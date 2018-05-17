@@ -10,6 +10,7 @@ class CreatePqrs < ActiveRecord::Migration[5.2]
       t.string :number
       t.date :date
       t.string :description
+      t.references :state, foreign_key: true
 
       t.timestamps
     end

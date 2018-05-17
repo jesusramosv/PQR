@@ -1,3 +1,3 @@
 class State < ApplicationRecord
-  belongs_to :pqr
+  has_many :pqrs
 end

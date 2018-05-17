@@ -76,8 +76,10 @@ ActiveRecord::Schema.define(version: 2018_05_16_011846) do
     t.string "number"
     t.date "date"
     t.string "description"
+    t.bigint "state_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["state_id"], name: "index_pqrs_on_state_id"
     t.index ["user_id"], name: "index_pqrs_on_user_id"
   end
 
@@ -94,12 +96,10 @@ ActiveRecord::Schema.define(version: 2018_05_16_011846) do
   end
 
   create_table "states", force: :cascade do |t|
-    t.bigint "pqr_id"
     t.string "name"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["pqr_id"], name: "index_states_on_pqr_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -129,9 +129,9 @@ ActiveRecord::Schema.define(version: 2018_05_16_011846) do
   add_foreign_key "docs", "pqrs"
   add_foreign_key "notifications", "pqrs"
   add_foreign_key "notifications", "users"
+  add_foreign_key "pqrs", "states"
   add_foreign_key "pqrs", "users"
   add_foreign_key "reviews", "pqrs"
   add_foreign_key "reviews", "users"
-  add_foreign_key "states", "pqrs"
   add_foreign_key "users", "departaments"
 end
